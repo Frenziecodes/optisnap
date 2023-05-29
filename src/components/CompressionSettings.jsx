@@ -1,4 +1,3 @@
-// components/CompressionSettings.js
 import React from 'react';
 
 function CompressionSettings({ settings, onChange }) {

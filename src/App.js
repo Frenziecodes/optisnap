@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from 'react';
 import UploadForm from './components/UploadForm';
 import CompressionSettings from './components/CompressionSettings';
