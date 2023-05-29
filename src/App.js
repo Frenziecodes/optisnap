@@ -38,7 +38,7 @@ function App() {
         },
       });
     } else {
-      // Handle the case when no file is selected
+      // Handling the case when no file is selected
     }
   };
 
