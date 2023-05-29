@@ -13,7 +13,7 @@ function CompressionSettings({ settings, onChange }) {
   };
 
   return (
-    <div>
+    <div className='mb-4'>
       <h2 className="text-lg font-bold mb-2">Compression Settings:</h2>
       <label htmlFor="quality" className="mr-2">
         Quality:

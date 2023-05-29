@@ -8,7 +8,7 @@ function UploadForm({ onFileSelect }) {
   };
 
   return (
-    <div>
+    <div className='shadow-xl p-3 h-56'>
       <h2 className="text-lg font-bold mb-2">Select an Image to Compress:</h2>
       <input
         type="file"
@@ -16,6 +16,7 @@ function UploadForm({ onFileSelect }) {
         onChange={handleFileChange}
         className="mb-4"
       />
+      {/* add somewhere that the image chosen will be displayed just a div thats not too tall or too wide. Just a sizeable one that will in the space available.then the picture will fill this div created */}
     </div>
   );
 }
