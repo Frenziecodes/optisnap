@@ -4,14 +4,13 @@ import CompressionSettings from './components/CompressionSettings';
 import CompressButton from './components/CompressButton';
 import ImageCompressor from 'image-compressor.js';
 
-
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [compressionSettings, setCompressionSettings] = useState({
     quality: 80,
     format: 'jpeg',
   });
-  const [compressedImage, setCompressedImage] = useState(null); // State for storing the compressed image
+  const [compressedImage, setCompressedImage] = useState(null);
 
   const handleFileSelect = (file) => {
     setSelectedFile(file);
@@ -25,7 +24,7 @@ function App() {
     if (selectedFile) {
       const compressor = new ImageCompressor();
       compressor.compress(selectedFile, {
-        quality: compressionSettings.quality,
+        quality: compressionSettings.quality / 100, // Divide by 100 to get a decimal value
         mimeType: `image/${compressionSettings.format}`,
         success(result) {
           const reader = new FileReader();
@@ -39,9 +38,18 @@ function App() {
         },
       });
     } else {
-      // Display an error message or handle the case when no file is selected
+      // Handle the case when no file is selected
     }
-  };  
+  };
+
+  const handleDownload = () => {
+    if (compressedImage) {
+      const link = document.createElement('a');
+      link.href = compressedImage;
+      link.download = 'compressed_image.jpg'; // Set the desired file name and extension
+      link.click();
+    }
+  };
 
   return (
     <div className="container min-h-screen bg-white">
@@ -71,21 +79,21 @@ function App() {
         </div>
 
         <div className="bg-white w-full p-4">
-          <div className='shadow-xl p-4'>
+        <div className='shadow-xl p-4'>
           <h2 className="text-lg font-bold mb-2">Compressed Image:</h2>
-            <div className="w-40 h-40 bg-gray-200 border border-gray-400">
-              {compressedImage ? (
-                <img src={compressedImage} alt="Compressed" className="w-full h-full object-cover" />
-              ) : (
-                'No image compressed'
-              )}
-            </div>
-            <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-              Download
-            </button>
+          <div className="w-40 h-40 bg-gray-200 border border-gray-400">
+            {compressedImage ? (
+              <img src={compressedImage} alt="Compressed" className="w-full h-full object-cover" />
+            ) : (
+              'No image compressed'
+            )}
           </div>
-          
+          <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onClick={handleDownload}>
+            Download
+          </button>
         </div>
+      </div>
+      
       </div>
     </div>
   );
