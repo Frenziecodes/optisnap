@@ -46,7 +46,9 @@ function App() {
     if (compressedImage) {
       const link = document.createElement('a');
       link.href = compressedImage;
-      link.download = 'compressed_image.jpg'; // Set the desired file name and extension
+      link.download = 'compressed_image.jpg';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       link.click();
     }
   };
@@ -93,7 +95,7 @@ function App() {
           </button>
         </div>
       </div>
-      
+
       </div>
     </div>
   );
