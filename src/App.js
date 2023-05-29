@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import UploadForm from './components/UploadForm';
 import CompressionSettings from './components/CompressionSettings';
 import CompressButton from './components/CompressButton';
+import ImageCompressor from 'image-compressor.js';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     quality: 80,
     format: 'jpeg',
   });
+  const [compressedImage, setCompressedImage] = useState(null); // State for storing the compressed image
 
   const handleFileSelect = (file) => {
     setSelectedFile(file);
@@ -20,13 +22,30 @@ function App() {
   };
 
   const handleCompress = () => {
-    // Perform compression logic using selectedFile and compressionSettings
-    // Update the UI with the compressed image or display an error message
-  };
+    if (selectedFile) {
+      const compressor = new ImageCompressor();
+      compressor.compress(selectedFile, {
+        quality: compressionSettings.quality,
+        mimeType: `image/${compressionSettings.format}`,
+        success(result) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            setCompressedImage(reader.result);
+          };
+          reader.readAsDataURL(result);
+        },
+        error(error) {
+          console.error('Image compression failed:', error);
+        },
+      });
+    } else {
+      // Display an error message or handle the case when no file is selected
+    }
+  };  
 
   return (
     <div className="container min-h-screen bg-white">
-      <div className="flex items-center p-4 justify-between shadow-lg mb-4">
+      <div className="flex items-center p-4 justify-between shadow-lg mb-2">
         <h1 className="text-2xl font-bold mr-2">OptiSnap</h1>
         <a href="https://github.com/Frenziecodes/optisnap" target="_blank">
           <svg
@@ -39,10 +58,10 @@ function App() {
         </a>
       </div>
 
-      <div className="flex mb-3">
+      <div className="flex mb-2">
         <div className="p-4 w-full">
           <UploadForm onFileSelect={handleFileSelect} selectedFile={selectedFile} />
-          <div className="h-56 shadow-2xl p-4 pt-6 mt-4">
+          <div className="h-52 shadow-2xl p-4 pt-6 mt-2">
             <CompressionSettings
               settings={compressionSettings}
               onChange={handleCompressionSettingsChange}
@@ -52,12 +71,20 @@ function App() {
         </div>
 
         <div className="bg-white w-full p-4">
-          <div className="w-40 h-40 bg-gray-200 border border-gray-400">
-            {/* Placeholder div for displaying the compressed image */}
+          <div className='shadow-xl p-4'>
+          <h2 className="text-lg font-bold mb-2">Compressed Image:</h2>
+            <div className="w-40 h-40 bg-gray-200 border border-gray-400">
+              {compressedImage ? (
+                <img src={compressedImage} alt="Compressed" className="w-full h-full object-cover" />
+              ) : (
+                'No image compressed'
+              )}
+            </div>
+            <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+              Download
+            </button>
           </div>
-          <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Download
-          </button>
+          
         </div>
       </div>
     </div>
