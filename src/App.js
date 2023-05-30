@@ -68,7 +68,7 @@ function App() {
         </a>
       </div>
 
-      <div className="flex mb-2">
+      <div className="flex flex-col md:flex-row mb-2">
         <div className="p-4 w-full">
           <UploadForm onFileSelect={handleFileSelect} selectedFile={selectedFile} />
           <div className="h-52 shadow-2xl p-4 pt-6 mt-2">
