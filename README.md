@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# OptiSnap - Image Compressor Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+OptiSnap is a web-based image compressor tool built with React. It allows users to compress images to reduce their file size while maintaining reasonable image quality. The tool is designed to be user-friendly, efficient, and customizable.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Upload and compress images in various formats (JPEG, PNG, GIF, etc.).
+- Adjust compression settings such as quality and format.
+- View the original image size and the compressed image size.
+- Download the compressed image file.
+- Responsive design for seamless usage on different devices.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run OptiSnap locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository: `https://github.com/Frenziecodes/optisnap.git`
+2. Navigate to the project directory: `cd optisnap`
+3. Install the dependencies: `npm install`
+4. Start the development server: `npm start`
+5. Open your browser and visit `http://localhost:3000`
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Upload Image:
 
-### `npm run build`
+   - Click on the "Choose File" button to select an image file from your local system.
+   - The selected image will be displayed in the upload form.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Compression Settings:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - Adjust the compression settings using the provided options:
+     - Quality: Choose a value between 1 and 100 to set the compression quality (default: 80).
+     - Format: Select the desired output format (JPEG, PNG, etc.) for the compressed image (default: JPEG).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Compress Image:
 
-### `npm run eject`
+   - Click the "Compress" button to start the compression process.
+   - The compressed image will be displayed along with the original image size and the compressed image size.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Download Compressed Image:
+   - If the compressed image is available, click the "Download" button to save the compressed image file to your local system.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an [issue](https://github.com/Frenziecodes/optisnap/issues) or submit a [pull request.](https://github.com/Frenziecodes/optisnap/pulls)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
+The OptiSnap project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Acknowledgements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- This project utilizes the [image-compressor.js](https://github.com/xkeshi/image-compressor) library for image compression.
+- The OptiSnap tool was created by [Frenziecodes](https://github.com/Frenziecodes)
 
-### Code Splitting
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For any questions or inquiries, please contact [Frenziecodes](mailto:coderflame3@gmail.com).
