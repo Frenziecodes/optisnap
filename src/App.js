@@ -3,6 +3,7 @@ import UploadForm from './components/UploadForm';
 import CompressionSettings from './components/CompressionSettings';
 import CompressButton from './components/CompressButton';
 import ImageCompressor from 'image-compressor.js';
+import AdvertBanner from './components/AdvertBanner';
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -59,7 +60,7 @@ function App() {
 
   return (
     <div className="container min-h-screen bg-white">
-      <div className="flex items-center p-4 justify-between shadow-lg mb-2">
+      <div className="flex items-center p-4 justify-between shadow-lg mb-1">
         <h1 className="text-2xl font-bold mr-2">OptiSnap</h1>
         <a href="https://github.com/Frenziecodes/optisnap" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.58 31.77" height="30">
@@ -67,6 +68,7 @@ function App() {
           </svg>
         </a>
       </div>
+      <AdvertBanner/>
 
       <div className="flex flex-col md:flex-row mb-2">
         <div className="p-4 w-full">
@@ -106,6 +108,12 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* <div className="bg-blue-500 p-4 text-white text-center">
+        <h2 className="text-xl font-bold">Promote Your Business Here!</h2>
+        <p className="text-lg">Interested in advertising with us?</p>
+        <p className="text-lg">Fill out our <a href="https://forms.gle/gfKxb65UKHBVzxbj8" target="_blank" rel="noopener noreferrer" className="underline">advertising inquiry form</a> to get started.</p>
+      </div> */}
     </div>
   );
 }
