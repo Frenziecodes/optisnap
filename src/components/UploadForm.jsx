@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 
-function UploadForm({ onFileSelect, selectedFile }) {
+function UploadForm({ onFileSelect, selectedFiles }) {
+  const [imageURLS, setImageURLs] = useState([]);
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    onFileSelect(file);
+    const files = [...event.target.files];
+    onFileSelect(files);
   };
 
   return (
@@ -14,15 +15,23 @@ function UploadForm({ onFileSelect, selectedFile }) {
         accept="image/*"
         onChange={handleFileChange}
         className="mb-4"
+        multiple
       />
       <div className="w-40 h-40 bg-gray-200 border border-gray-400">
-        {selectedFile && (
-          <img
-            src={URL.createObjectURL(selectedFile)}
-            alt="Selected"
-            className="w-full h-full object-cover"
-          />
-        )}
+        {selectedFiles &&
+          selectedFiles.length &&
+          selectedFiles.map((selectedFile) => {
+            console.log({ selectedFile });
+
+            return (
+              <img
+                key={selectedFile.name}
+                src={URL.createObjectURL(selectedFile)}
+                alt="Selected"
+                className="w-full h-full object-cover"
+              />
+            );
+          })}
       </div>
     </div>
   );
