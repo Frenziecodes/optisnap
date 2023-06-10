@@ -83,6 +83,7 @@ function App() {
           <UploadForm
             onFileSelect={handleFileSelect}
             selectedFiles={selectedFiles}
+            setSelectedFiles={setSelectedFiles}
           />
           <div className="h-52 shadow-2xl p-4 pt-6 mt-2">
             <CompressionSettings
