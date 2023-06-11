@@ -56,14 +56,20 @@ function App() {
     }
   };
 
-  const handleDownload = () => {
-    if (compressedImages) {
-      const link = document.createElement("a");
-      link.href = compressedImages;
-      link.download = "compressed_image.jpg";
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.click();
+  const handleDownload = (image) => {
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "compressed_image.jpg";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.click();
+  };
+
+  const handleMultipleDownload = () => {
+    for (let index = 0; index < compressedImages.length; index++) {
+      const element = compressedImages[index];
+
+      handleDownload(element.image);
     }
   };
 
@@ -113,7 +119,7 @@ function App() {
               {compressedImages.length ? (
                 <button
                   className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mb-4"
-                  onClick={() => console.log({ compressedImages })}
+                  onClick={handleMultipleDownload}
                 >
                   Download All
                 </button>
@@ -124,7 +130,7 @@ function App() {
               <div className="w-full bg-gray-200 border border-gray-400 grid grid-cols-2 gap-4 p-3">
                 {compressedImages.map((image) => {
                   return (
-                    <div>
+                    <div key={image.image}>
                       <img
                         src={image.image}
                         alt="Compressed"
@@ -143,7 +149,7 @@ function App() {
 
                       <button
                         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-4"
-                        onClick={handleDownload}
+                        onClick={() => handleDownload(image.image)}
                       >
                         Download
                       </button>
