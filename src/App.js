@@ -11,13 +11,10 @@ function App() {
     quality: 80,
     format: "jpeg",
   });
-  const [compressedImage, setCompressedImage] = useState(null);
-  const [originalFileSize, setOriginalFileSize] = useState(null);
-  const [compressedFileSize, setCompressedFileSize] = useState(null);
+  const [compressedImages, setCompressedImages] = useState([]);
 
   const handleFileSelect = (file) => {
     setSelectedFiles(file);
-    setOriginalFileSize(file.size);
   };
 
   const handleCompressionSettingsChange = (settings) => {
@@ -25,32 +22,44 @@ function App() {
   };
 
   const handleCompress = () => {
-    if (selectedFiles) {
-      const compressor = new ImageCompressor();
-      compressor.compress(selectedFiles, {
+    const compressor = new ImageCompressor();
+    let compressed = [];
+
+    for (let index = 0; index < selectedFiles.length; index++) {
+      const file = selectedFiles[index];
+
+      compressor.compress(file, {
         quality: compressionSettings.quality / 100,
         mimeType: `image/${compressionSettings.format}`,
+        // eslint-disable-next-line no-loop-func
         success(result) {
           const reader = new FileReader();
           reader.onload = () => {
-            setCompressedImage(reader.result);
-            setCompressedFileSize(result.size);
+            compressed = [
+              ...compressed,
+              {
+                image: reader.result,
+                compressedFileSize: result.size,
+                originalFileSize: file.size,
+              },
+            ];
+
+            setCompressedImages(compressed);
           };
+
           reader.readAsDataURL(result);
         },
         error(error) {
           console.error("Image compression failed:", error);
         },
       });
-    } else {
-      // Handling the case when no file is selected
     }
   };
 
   const handleDownload = () => {
-    if (compressedImage) {
+    if (compressedImages) {
       const link = document.createElement("a");
-      link.href = compressedImage;
+      link.href = compressedImages;
       link.download = "compressed_image.jpg";
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -90,41 +99,61 @@ function App() {
               settings={compressionSettings}
               onChange={handleCompressionSettingsChange}
             />
-            <CompressButton onClick={handleCompress} />
+            <CompressButton
+              onClick={handleCompress}
+              selectedFiles={selectedFiles}
+            />
           </div>
         </div>
 
         <div className="bg-white w-full p-4">
           <div className="shadow-xl p-4">
-            <h2 className="text-lg font-bold mb-2">Compressed Image:</h2>
-            <div className="w-40 h-40 bg-gray-200 border border-gray-400">
-              {compressedImage ? (
-                <img
-                  src={compressedImage}
-                  alt="Compressed"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                "No image compressed"
-              )}
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-bold mb-2">Compressed Image:</h2>
+              {compressedImages.length ? (
+                <button
+                  className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mb-4"
+                  onClick={() => console.log({ compressedImages })}
+                >
+                  Download All
+                </button>
+              ) : null}
             </div>
-            {compressedFileSize && (
-              <p className="text-sm mt-2">
-                Compressed File Size: {(compressedFileSize / 1024).toFixed(2)}{" "}
-                KB
-              </p>
+
+            {compressedImages.length ? (
+              <div className="w-full bg-gray-200 border border-gray-400 grid grid-cols-2 gap-4 p-3">
+                {compressedImages.map((image) => {
+                  return (
+                    <div>
+                      <img
+                        src={image.image}
+                        alt="Compressed"
+                        className="w-40 h-40 object-cover"
+                      />
+
+                      <p className="text-sm mt-2">
+                        Compressed File Size:{" "}
+                        {(image.compressedFileSize / 1024).toFixed(2)} KB
+                      </p>
+
+                      <p className="text-sm mt-2">
+                        Original File Size:{" "}
+                        {(image.originalFileSize / 1024).toFixed(2)} KB
+                      </p>
+
+                      <button
+                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-4"
+                        onClick={handleDownload}
+                      >
+                        Download
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p>No Compressed Image</p>
             )}
-            {selectedFiles && (
-              <p className="text-sm mt-2">
-                Original File Size: {(originalFileSize / 1024).toFixed(2)} KB
-              </p>
-            )}
-            <button
-              className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onClick={handleDownload}
-            >
-              Download
-            </button>
           </div>
         </div>
       </div>
