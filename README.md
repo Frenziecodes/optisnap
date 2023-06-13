@@ -4,10 +4,10 @@ OptiSnap is a web-based image compressor tool built with React. It allows users 
 
 ## Features
 
-- Upload and compress images in various formats (JPEG, PNG, GIF, etc.).
+- Upload and compress multiple images in various formats (JPEG, PNG, GIF, etc.).
 - Adjust compression settings such as quality and format.
 - View the original image size and the compressed image size.
-- Download the compressed image file.
+- Download the compressed image files.
 - Responsive design for seamless usage on different devices.
 
 ## Getting Started
@@ -22,28 +22,28 @@ To run OptiSnap locally, follow these steps:
 
 ## Usage
 
-1. Upload Image:
+1. Upload Images:
 
-   - Click on the "Choose File" button to select an image file from your local system.
-   - The selected image will be displayed in the upload form.
+   - Click on the "Choose Files" button to select one or more image files from your local system.
+   - The selected images will be displayed in the upload form.
 
 2. Compression Settings:
 
    - Adjust the compression settings using the provided options:
      - Quality: Choose a value between 1 and 100 to set the compression quality (default: 80).
-     - Format: Select the desired output format (JPEG, PNG, etc.) for the compressed image (default: JPEG).
+     - Format: Select the desired output format (JPEG, PNG, etc.) for the compressed images (default: JPEG).
 
-3. Compress Image:
+3. Compress Images:
 
    - Click the "Compress" button to start the compression process.
-   - The compressed image will be displayed along with the original image size and the compressed image size.
+   - The compressed images will be displayed along with their original sizes and the compressed sizes.
 
-4. Download Compressed Image:
-   - If the compressed image is available, click the "Download" button to save the compressed image file to your local system.
+4. Download Compressed Images:
+   - If the compressed images are available, click the "Download" button to save the compressed image files to your local system.
 
 ## Contributing
 
-Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an [issue](https://github.com/Frenziecodes/optisnap/issues) or submit a [pull request.](https://github.com/Frenziecodes/optisnap/pulls)
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an [issue](https://github.com/Frenziecodes/optisnap/issues) or submit a [pull request](https://github.com/Frenziecodes/optisnap/pulls).
 
 ## License
 
