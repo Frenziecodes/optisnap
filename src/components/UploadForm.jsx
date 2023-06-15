@@ -59,7 +59,7 @@ function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
       onDragOver={allowDrop}
       onDrop={handleDrop}
     >
-      <h2 className="text-lg font-bold mb-2">Select Image(s) to Compress:</h2>
+      <h2 className="text-lg font-bold mb-2">Select/Drag Image(s) to Compress:</h2>
       <p id="invalidFiles" className="mb-4 font-bold text-red-500 hidden"></p>
       <input
         type="file"
