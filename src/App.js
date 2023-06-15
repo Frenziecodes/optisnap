@@ -149,6 +149,7 @@ function App() {
 
                       <button
                         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-4"
+                        type="button"
                         onClick={() => handleDownload(image.image)}
                       >
                         Download

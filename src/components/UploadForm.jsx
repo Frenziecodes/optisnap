@@ -2,8 +2,50 @@ import React from "react";
 
 function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
   const handleFileChange = (event) => {
+
+    // hide the error message, if generated in past by drop feature 
+    const errorMessage = document.querySelector("#invalidFiles");
+    errorMessage.style.display = "none";
+
     const files = [...event.target.files];
     onFileSelect(files);
+  };
+
+  const allowDrop = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+
+    // Access the dropped files 
+    const files = [...event.dataTransfer.files];
+    const reviewedFiles = [];
+    let inValidFileCount = 0;
+   
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const isImage = file.type.startsWith('image/');
+  
+      if (isImage) {
+        reviewedFiles.push(file);
+      } else {
+        inValidFileCount++;
+      }
+    }
+
+    // display error message if invalid file received, else hide the message 
+    const errorMessage = document.querySelector("#invalidFiles");
+    if(inValidFileCount > 0)
+    {
+      errorMessage.style.display = "block";
+      errorMessage.textContent = `Error: Invalid file format. Excluded ${inValidFileCount} files.`;
+    }
+    else
+      errorMessage.style.display = "none";
+
+    // pass only the images and exclude other files 
+    onFileSelect(reviewedFiles);
   };
 
   const removeImage = (file) => {
@@ -15,13 +57,15 @@ function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
   };
 
   return (
-    <div className="shadow-xl p-3">
+    <div className="shadow-xl p-3" id="dropContainer" onDragOver={allowDrop} onDrop={handleDrop}>
       <h2 className="text-lg font-bold mb-2">Select an Image to Compress:</h2>
+      <p id="invalidFiles" className="mb-4 font-bold text-red-500 hidden"></p>
       <input
         type="file"
         accept="image/*"
         onChange={handleFileChange}
         className="mb-4"
+        title="Upload Images"
         multiple
       />
 
