@@ -2,8 +2,7 @@ import React from "react";
 
 function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
   const handleFileChange = (event) => {
-
-    // hide the error message, if generated in past by drop feature 
+    // hide the error message, if generated in the past by drop feature
     const errorMessage = document.querySelector("#invalidFiles");
     errorMessage.style.display = "none";
 
@@ -18,15 +17,15 @@ function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
   const handleDrop = (event) => {
     event.preventDefault();
 
-    // Access the dropped files 
+    // Access the dropped files
     const files = [...event.dataTransfer.files];
     const reviewedFiles = [];
     let inValidFileCount = 0;
-   
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const isImage = file.type.startsWith('image/');
-  
+      const isImage = file.type.startsWith("image/");
+
       if (isImage) {
         reviewedFiles.push(file);
       } else {
@@ -34,17 +33,14 @@ function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
       }
     }
 
-    // display error message if invalid file received, else hide the message 
+    // display error message if invalid file received, else hide the message
     const errorMessage = document.querySelector("#invalidFiles");
-    if(inValidFileCount > 0)
-    {
+    if (inValidFileCount > 0) {
       errorMessage.style.display = "block";
       errorMessage.textContent = `Error: Invalid file format. Excluded ${inValidFileCount} files.`;
-    }
-    else
-      errorMessage.style.display = "none";
+    } else errorMessage.style.display = "none";
 
-    // pass only the images and exclude other files 
+    // pass only the images and exclude other files
     onFileSelect(reviewedFiles);
   };
 
@@ -57,8 +53,13 @@ function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
   };
 
   return (
-    <div className="shadow-xl p-3" id="dropContainer" onDragOver={allowDrop} onDrop={handleDrop}>
-      <h2 className="text-lg font-bold mb-2">Select / Drag Image(s) to Compress:</h2>
+    <div
+      className="shadow-xl p-3"
+      id="dropContainer"
+      onDragOver={allowDrop}
+      onDrop={handleDrop}
+    >
+      <h2 className="text-lg font-bold mb-2">Select Image(s) to Compress:</h2>
       <p id="invalidFiles" className="mb-4 font-bold text-red-500 hidden"></p>
       <input
         type="file"
@@ -68,6 +69,10 @@ function UploadForm({ onFileSelect, selectedFiles, setSelectedFiles }) {
         title="Upload Images"
         multiple
       />
+
+      <div className="text-gray-500 mb-4">
+        <p>Drag and drop files here</p>
+      </div>
 
       {selectedFiles && selectedFiles.length ? (
         <div className="w-full bg-gray-200 border border-gray-400 grid grid-cols-2 gap-4 p-3">
