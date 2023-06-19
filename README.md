@@ -24,7 +24,7 @@ To run OptiSnap locally, follow these steps:
 
 1. Upload Images:
 
-   - Click on the "Choose Files" button to select one or more image files from your local system.
+   - Click on the "Choose Files" button to select one or more image files from your local system or drag and drop your images.
    - The selected images will be displayed in the upload form.
 
 2. Compression Settings:
