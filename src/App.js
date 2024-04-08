@@ -4,6 +4,7 @@ import CompressionSettings from "./components/CompressionSettings";
 import CompressButton from "./components/CompressButton";
 import MainHeader from "./components/HeaderMain";
 import ImageCompressor from "image-compressor.js";
+import Footer from "./components/Footer";
 
 function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -165,6 +166,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
