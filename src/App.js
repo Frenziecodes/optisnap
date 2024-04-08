@@ -3,7 +3,6 @@ import UploadForm from "./components/UploadForm";
 import CompressionSettings from "./components/CompressionSettings";
 import CompressButton from "./components/CompressButton";
 import ImageCompressor from "image-compressor.js";
-import AdvertBanner from "./components/AdvertBanner";
 
 function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -91,7 +90,6 @@ function App() {
           </svg>
         </a>
       </div>
-      <AdvertBanner />
 
       <div className="flex flex-col md:flex-row mb-2">
         <div className="p-4 w-full">
@@ -164,12 +162,6 @@ function App() {
           </div>
         </div>
       </div>
-
-      {/* <div className="bg-blue-500 p-4 text-white text-center">
-        <h2 className="text-xl font-bold">Promote Your Business Here!</h2>
-        <p className="text-lg">Interested in advertising with us?</p>
-        <p className="text-lg">Fill out our <a href="https://forms.gle/gfKxb65UKHBVzxbj8" target="_blank" rel="noopener noreferrer" className="underline">advertising inquiry form</a> to get started.</p>
-      </div> */}
     </div>
   );
 }
