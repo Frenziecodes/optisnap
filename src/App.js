@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UploadForm from "./components/UploadForm";
 import CompressionSettings from "./components/CompressionSettings";
 import CompressButton from "./components/CompressButton";
+import MainHeader from "./components/HeaderMain";
 import ImageCompressor from "image-compressor.js";
 
 function App() {
@@ -75,7 +76,7 @@ function App() {
   return (
     <div className="container min-h-screen bg-white">
       <div className="flex items-center p-4 justify-between shadow-lg mb-1">
-        <h1 className="text-2xl font-bold mr-2">OptiSnap</h1>
+        <h1 className="text-2xl font-bold mr-2 text-teal-700">OptiSnap</h1>
         <a
           href="https://github.com/Frenziecodes/optisnap"
           target="_blank"
@@ -90,6 +91,8 @@ function App() {
           </svg>
         </a>
       </div>
+
+      <MainHeader />
 
       <div className="flex flex-col md:flex-row mb-2">
         <div className="p-4 w-full">
